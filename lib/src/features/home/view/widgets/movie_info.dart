@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_task/src/app/app_colors.dart';
 
 class MovieInfo extends StatelessWidget {
   final String title;
@@ -41,11 +42,9 @@ class MovieInfo extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          onPressed: () {
-            // Add your navigation or action here
-          },
+          onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.deepPurple, // Button color
+            backgroundColor: AppColors.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),

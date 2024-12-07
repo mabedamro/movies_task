@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_task/src/app/app_colors.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_bloc.dart';
 import 'package:movies_task/src/features/home/data/repo/movies_repo.dart';
 import 'package:movies_task/src/features/home/view/pages/home_page.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
             useMaterial3: true,
           ),
           home: HomePage(),

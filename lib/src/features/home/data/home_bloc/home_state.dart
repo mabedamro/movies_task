@@ -17,3 +17,9 @@ class HomeError extends HomeState {
 
   HomeError(this.message);
 }
+
+class MovieSearchLoaded extends HomeState {
+  final List<Movie> movies;
+
+  MovieSearchLoaded(this.movies); // State for search results
+}

@@ -20,4 +20,17 @@ class HomeRepository {
       throw Exception('Failed to load movies');
     }
   }
+
+  Future<List<Movie>> searchMovies(String query) async {
+    final response = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/search/movie?api_key=${EndPoints.apiKey}&query=$query&language=en-US"));
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      final results = data['results'] as List;
+      return results.map((movie) => Movie.fromJson(movie)).toList();
+    } else {
+      throw Exception('Failed to load search results');
+    }
+  }
 }
