@@ -5,22 +5,40 @@ import 'package:movies_task/src/features/home/data/repo/movies_repo.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository movieRepository;
+  int _currentPage = 1; // Tracks the current page for pagination
+  bool _isFetching = false; // Prevents duplicate fetch calls
 
   HomeBloc(this.movieRepository) : super(HomeInitial()) {
     // Registering the event handlers
     on<FetchTrendingMovies>(_onFetchTrendingHomes);
+    on<FetchMoreTrendingMovies>(_onFetchTrendingHomes);
+
     on<SearchMovies>(
         _onSearchHomes); // Register the handler for the SearchHomes event
   }
 
-  Future<void> _onFetchTrendingHomes(
-      FetchTrendingMovies event, Emitter<HomeState> emit) async {
-    emit(HomeLoading());
+  Future<void> _onFetchTrendingHomes(event, Emitter<HomeState> emit) async {
+    if (_isFetching) return; // Prevent simultaneous fetch calls
+
+    _isFetching = true;
     try {
-      final movies = await movieRepository.fetchTrendingMovies();
-      emit(HomeLoaded(movies));
+      if (state is! HomeLoaded) {
+        emit(HomeLoading());
+      }
+
+      final currentMovies =
+          state is HomeLoaded ? (state as HomeLoaded).movies : [];
+
+      final newMovies =
+          await movieRepository.fetchTrendingMovies(page: _currentPage);
+
+      emit(HomeLoaded([...currentMovies, ...newMovies]));
+
+      _currentPage++;
     } catch (error) {
       emit(HomeError(error.toString()));
+    } finally {
+      _isFetching = false;
     }
   }
 

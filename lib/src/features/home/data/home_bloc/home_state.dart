@@ -23,3 +23,5 @@ class MovieSearchLoaded extends HomeState {
 
   MovieSearchLoaded(this.movies); // State for search results
 }
+
+class HomeLoadingMore extends HomeState {}

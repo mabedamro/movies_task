@@ -7,3 +7,5 @@ class SearchMovies extends HomeEvent {
 
   SearchMovies(this.query); // Constructor to accept search query.
 }
+
+class FetchMoreTrendingMovies extends HomeEvent {}
