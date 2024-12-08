@@ -1,4 +1,4 @@
-import 'package:movies_task/src/features/global/models/movie.dart';
+import 'package:movies_task/src/features/home/models/movie.dart';
 
 abstract class HomeState {}
 

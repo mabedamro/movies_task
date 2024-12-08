@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movies_task/src/app/app_colors.dart';
-import 'package:movies_task/src/features/movies_details/view/pages/details_page.dart';
+import 'package:movies_task/src/features/movie_details/view/pages/details_page.dart';
 
 class MovieInfo extends StatelessWidget {
   final String title;
@@ -45,7 +45,7 @@ class MovieInfo extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => MovieDetailsScreen(movieId: id),
+                builder: (_) => MovieDetailsPage(id),
               ),
             );
           },
