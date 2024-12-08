@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:movies_task/src/app/app_colors.dart';
+import 'package:movies_task/src/features/movies_details/view/pages/details_page.dart';
 
 class MovieInfo extends StatelessWidget {
   final String title;
   final String rating;
-
-  const MovieInfo({
-    Key? key,
-    required this.title,
-    required this.rating,
-  }) : super(key: key);
+  final int id;
+  const MovieInfo(
+      {Key? key, required this.title, required this.rating, required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,14 @@ class MovieInfo extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => MovieDetailsScreen(movieId: id),
+              ),
+            );
+          },
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.primaryColor,
             shape: RoundedRectangleBorder(

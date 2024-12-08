@@ -7,12 +7,13 @@ class MovieCard extends StatelessWidget {
   final String title;
   final String posterUrl;
   final String rating;
-
+  final int id;
   const MovieCard({
     Key? key,
     required this.title,
     required this.posterUrl,
     required this.rating,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -27,7 +28,11 @@ class MovieCard extends StatelessWidget {
           MoviePoster(posterUrl: posterUrl),
           const SizedBox(width: 16),
           Expanded(
-            child: MovieInfo(title: title, rating: rating),
+            child: MovieInfo(
+              title: title,
+              rating: rating,
+              id: id,
+            ),
           ),
         ],
       ),

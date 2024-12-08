@@ -5,4 +5,8 @@ class EndPoints {
   static trendingMovies() {
     return base_url + "/3/trending/movie/day?language=en-US&api_key=$apiKey";
   }
+
+  static details(id) {
+    return base_url + "/3/movie/$id?api_key=$apiKey&language=en-US";
+  }
 }

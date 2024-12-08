@@ -50,10 +50,12 @@ class HomePage extends StatelessWidget {
               itemBuilder: (context, index) {
                 final movie = movies[index];
                 return MovieCard(
-                    title: movie.title,
-                    posterUrl:
-                        'https://image.tmdb.org/t/p/w200${movie.posterPath}',
-                    rating: movie.voteAverage.toString());
+                  title: movie.title,
+                  posterUrl:
+                      'https://image.tmdb.org/t/p/w200${movie.posterPath}',
+                  rating: movie.voteAverage.toString(),
+                  id: movie.id,
+                );
               },
             );
           } else if (state is HomeError) {

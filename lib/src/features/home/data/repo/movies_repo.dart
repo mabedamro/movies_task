@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:movies_task/src/features/home/models/movie.dart';
+import 'package:movies_task/src/features/global/models/movie.dart';
 import 'package:movies_task/src/utils/end_points.dart';
 
 class HomeRepository {
