@@ -18,6 +18,12 @@ class HomeError extends HomeState {
   HomeError(this.message);
 }
 
+class HomeSearchEmpty extends HomeState {
+  final String message;
+
+  HomeSearchEmpty(this.message);
+}
+
 class MovieSearchLoaded extends HomeState {
   final List<Movie> movies;
 

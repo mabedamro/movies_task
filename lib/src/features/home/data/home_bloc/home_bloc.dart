@@ -81,6 +81,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     try {
       final movies = await movieRepository
           .searchMovies(event.query); // Fetch movies based on query
+      if (movies.isEmpty) {
+        emit(HomeSearchEmpty(Constants.noDataFound));
+        return;
+      }
       emit(MovieSearchLoaded(movies)); // Emit the search results
     } on SocketException {
       emit(HomeError(Constants.noInternetMsg));
