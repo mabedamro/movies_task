@@ -94,6 +94,7 @@ class _HomePageState extends State<HomePage> {
             return _buildMoviesList(movies);
           } else if (state is HomeLoaded || state is HomeLoadingMore) {
             final movies = (state as HomeLoaded).movies;
+            isInitialed = true;
             return _buildMoviesList(movies);
           } else if (state is HomeSearchEmpty) {
             return Center(child: Text(state.message));
