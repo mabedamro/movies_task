@@ -48,7 +48,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text("Trending Movies"),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(56.0), // Height of the search bar
+          preferredSize:
+              const Size.fromHeight(56.0), // Height of the search bar
           child: Row(
             children: [
               SizedBox(
@@ -76,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     _searchController.text = '';
                     context.read<HomeBloc>().add(SearchMovies(''));
                   },
-                  child: Text('Reset'))
+                  child: const Text('Reset'))
             ],
           ),
         ),
@@ -105,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       context.read<HomeBloc>().add(FetchTrendingMovies());
                     },
-                    child: Text('Rety'))
+                    child: const Text('Rety'))
               ],
             );
           } else {
@@ -133,7 +134,7 @@ class _HomePageState extends State<HomePage> {
         final movie = movies[index];
         return MovieCard(
           title: movie.title,
-          posterUrl: '${movie.posterPath}',
+          posterUrl: movie.posterPath,
           rating: movie.voteAverage.toString(),
           id: movie.id,
         );

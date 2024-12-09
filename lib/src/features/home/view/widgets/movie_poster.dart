@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 
 class MoviePoster extends StatelessWidget {
   final String posterUrl;
@@ -14,13 +15,13 @@ class MoviePoster extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       child: Image.network(
         posterUrl,
-        height: 150,
-        width: 100,
+        height: 20.h,
+        width: 30.w,
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) => Container(
           color: Colors.grey.shade300,
-          height: 150,
-          width: 100,
+          height: 20.h,
+          width: 30.w,
           child: const Icon(Icons.broken_image, size: 40, color: Colors.grey),
         ),
       ),

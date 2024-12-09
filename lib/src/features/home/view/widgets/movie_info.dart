@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:movies_task/src/app/app_colors.dart';
 import 'package:movies_task/src/features/movie_details/view/pages/details_page.dart';
 
@@ -17,29 +18,27 @@ class MovieInfo extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 18,
+          style: TextStyle(
+            fontSize: 16.dp,
             fontWeight: FontWeight.bold,
-            color: Colors.black87,
           ),
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 1.h),
         Row(
           children: [
             const Icon(Icons.star, color: Colors.amber, size: 20),
-            const SizedBox(width: 4),
+            SizedBox(width: 1.w),
             Text(
               rating,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black87,
+              style: TextStyle(
+                fontSize: 14.dp,
               ),
             ),
           ],
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: 1.h),
         ElevatedButton(
           onPressed: () {
             Navigator.push(

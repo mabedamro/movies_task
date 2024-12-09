@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:movies_task/src/features/home/view/widgets/movie_card.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_bloc.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_event.dart';
@@ -34,50 +35,32 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
           if (state is DetailsLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is DetailsLoaded) {
-            MovieDetails movie = (state as DetailsLoaded).movie;
+            MovieDetails movie = state.movie;
 
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Backdrop image
-                  Stack(
-                    children: [
-                      Image.network(
-                        '${movie.backdropPath}',
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                        height: 250,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 250,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Colors.black.withOpacity(0.8),
-                              Colors.transparent,
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter,
-                          ),
-                        ),
-                      ),
-                    ],
+                  Image.network(
+                    '${movie.backdropPath}',
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    height: 30.h,
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 3.h),
                   // Movie title
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       movie.title,
-                      style: const TextStyle(
-                        fontSize: 24,
+                      style: TextStyle(
+                        fontSize: 24.dp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 3.h),
                   // Release date and rating
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -85,40 +68,39 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                       children: [
                         Text(
                           'Release Date: ${movie.releaseDate}',
-                          style: const TextStyle(fontSize: 16),
+                          style: TextStyle(fontSize: 14.dp),
                         ),
                         const Spacer(),
                         Row(
                           children: [
                             const Icon(Icons.star, color: Colors.amber),
-                            const SizedBox(width: 4),
+                            SizedBox(width: 1.w),
                             Text(
                               '${movie.voteAverage}',
-                              style: const TextStyle(fontSize: 16),
+                              style: TextStyle(fontSize: 14.dp),
                             ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 2.h),
                   // Overview
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: const Text(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
                       'Overview',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 20.dp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 8),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
                       movie.overview,
-                      style: const TextStyle(fontSize: 16, height: 1.5),
+                      style: TextStyle(fontSize: 15.dp),
                     ),
                   ),
                 ],
@@ -136,7 +118,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                           .read<DetailsBloc>()
                           .add(FetchMovieDetails(widget.movieId));
                     },
-                    child: Text('Rety'))
+                    child: const Text('Rety'))
               ],
             );
           } else {
