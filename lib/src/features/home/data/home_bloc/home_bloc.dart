@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_event.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_state.dart';
@@ -36,6 +38,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeLoaded([...currentMovies, ...newMovies]));
 
       _currentPage++;
+    } on SocketException {
+      emit(HomeError('No Internet Connection. Please try again.'));
+    } on FormatException {
+      emit(HomeError('Bad response format from the server.'));
     } catch (error) {
       emit(HomeError(error.toString()));
     } finally {
@@ -55,6 +61,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       final movies = await movieRepository
           .searchMovies(event.query); // Fetch movies based on query
       emit(MovieSearchLoaded(movies)); // Emit the search results
+    } on SocketException {
+      emit(HomeError('No Internet Connection. Please try again.'));
+    } on FormatException {
+      emit(HomeError('Bad response format from the server.'));
     } catch (error) {
       emit(HomeError(error.toString()));
     }
