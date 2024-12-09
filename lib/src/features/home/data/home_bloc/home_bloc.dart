@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_event.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_state.dart';
-import 'package:movies_task/src/features/home/data/repo/movies_repo.dart';
+import 'package:movies_task/src/features/home/data/repo/home_repo.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository movieRepository;
@@ -26,6 +26,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         emit(HomeLoading());
       }
 
+      print(_currentPage);
       final currentMovies =
           state is HomeLoaded ? (state as HomeLoaded).movies : [];
 

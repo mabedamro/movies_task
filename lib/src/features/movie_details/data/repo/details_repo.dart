@@ -5,7 +5,7 @@ import 'package:movies_task/src/utils/end_points.dart';
 
 class DetailsRepo {
   Future<MovieDetails> fetchMovieDetails(id) async {
-    // Fetching trending movies from the API endpoint
+    // Fetching movie Details from the API endpoint
     final response = await http.get(Uri.parse(EndPoints.details(id)));
 
     if (response.statusCode == 200) {
@@ -13,7 +13,7 @@ class DetailsRepo {
       final data = json.decode(response.body);
       final movie = data as Map<String, dynamic>;
 
-      // Return a list of movies by mapping through the JSON data
+      // Return a movie details from JSON data to movie model
       return MovieDetails.fromJson(movie);
     } else {
       // If the API request fails, throw an exception

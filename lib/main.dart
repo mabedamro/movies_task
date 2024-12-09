@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/app/app_colors.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_bloc.dart';
-import 'package:movies_task/src/features/home/data/repo/movies_repo.dart';
+import 'package:movies_task/src/features/home/data/repo/home_repo.dart';
 import 'package:movies_task/src/features/home/view/pages/home_page.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_bloc.dart';
 import 'package:movies_task/src/features/movie_details/data/repo/details_repo.dart';

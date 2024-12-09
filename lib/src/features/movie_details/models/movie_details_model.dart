@@ -3,6 +3,7 @@ import 'package:movies_task/src/features/movie_details/models/production_company
 import 'package:movies_task/src/features/movie_details/models/production_country.dart';
 import 'package:movies_task/src/features/movie_details/models/spoken_lang.dart';
 
+// it can be inhertied from the Movie model but in this way we make each feature as standalone feature
 class MovieDetails {
   final bool adult;
   final String? backdropPath;
