@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Trending Movies"),
+        title: const Text("Trending Movies (Home)"),
         bottom: PreferredSize(
           preferredSize:
               const Size.fromHeight(56.0), // Height of the search bar
