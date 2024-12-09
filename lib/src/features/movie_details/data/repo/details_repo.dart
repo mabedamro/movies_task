@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movies_task/src/core/api/end_points.dart';
 import 'package:movies_task/src/features/movie_details/models/movie_details_model.dart';
-import 'package:movies_task/src/utils/end_points.dart';
 
 class DetailsRepo {
   Future<MovieDetails> fetchMovieDetails(id) async {
