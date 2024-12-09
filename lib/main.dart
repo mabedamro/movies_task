@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:movies_task/src/app/app_colors.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_bloc.dart';
 import 'package:movies_task/src/features/home/data/repo/home_repo.dart';
@@ -17,23 +18,28 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => DetailsBloc(DetailsRepo()),
+    return FlutterSizer(
+      builder: (context, orientation, screenType) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => DetailsBloc(DetailsRepo()),
+            ),
+            BlocProvider(
+              create: (context) => HomeBloc(HomeRepository()),
+            ),
+          ],
+          child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              colorScheme:
+                  ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
+              useMaterial3: true,
+            ),
+            home: HomePage(),
           ),
-          BlocProvider(
-            create: (context) => HomeBloc(HomeRepository()),
-          ),
-        ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData(
-            colorScheme:
-                ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-            useMaterial3: true,
-          ),
-          home: HomePage(),
-        ));
+        );
+      },
+    );
   }
 }

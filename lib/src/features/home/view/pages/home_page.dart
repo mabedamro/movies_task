@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_sizer/flutter_sizer.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_bloc.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_event.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_state.dart';
@@ -48,24 +49,34 @@ class _HomePageState extends State<HomePage> {
         title: const Text("Trending Movies"),
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(56.0), // Height of the search bar
-          child: Column(
+          child: Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: TextField(
-                  controller: _searchController,
-                  onChanged: (query) {
-                    context.read<HomeBloc>().add(SearchMovies(query));
-                  },
-                  decoration: InputDecoration(
-                    hintText: 'Search movies...',
-                    suffixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+              SizedBox(
+                width: 80.w,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: TextField(
+                    controller: _searchController,
+                    onChanged: (query) {
+                      context.read<HomeBloc>().add(SearchMovies(query));
+                    },
+                    decoration: InputDecoration(
+                      hintText: 'Search movies...',
+                      suffixIcon: const Icon(Icons.search),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
                     ),
                   ),
                 ),
               ),
+              TextButton(
+                  onPressed: () {
+                    //CLEAR SEARCH FIELD
+                    _searchController.text = '';
+                    context.read<HomeBloc>().add(SearchMovies(''));
+                  },
+                  child: Text('Reset'))
             ],
           ),
         ),
@@ -84,7 +95,17 @@ class _HomePageState extends State<HomePage> {
             final movies = (state as HomeLoaded).movies;
             return _buildMoviesList(movies);
           } else if (state is HomeError) {
-            return Center(child: Text(state.message));
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(child: Text(state.message)),
+                TextButton(
+                    onPressed: () {
+                      context.read<HomeBloc>().add(FetchTrendingMovies());
+                    },
+                    child: Text('Rety'))
+              ],
+            );
           } else {
             return const Center(child: Text("Something went wrong"));
           }

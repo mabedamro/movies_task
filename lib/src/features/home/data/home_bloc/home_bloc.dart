@@ -28,9 +28,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       if (state is! HomeLoaded) {
         emit(HomeLoading());
       }
-      _currentPage = 1;
-      final currentMovies =
-          state is HomeLoaded ? (state as HomeLoaded).movies : [];
+      _currentPage = 1; // reset page number to 1
       final movies =
           await movieRepository.fetchTrendingMovies(page: _currentPage);
       emit(HomeLoaded(movies));

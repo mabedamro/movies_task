@@ -125,7 +125,20 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
               ),
             );
           } else if (state is DetailsError) {
-            return Center(child: Text(state.message));
+            // return Center(child: Text(state.message));
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(child: Text(state.message)),
+                TextButton(
+                    onPressed: () {
+                      context
+                          .read<DetailsBloc>()
+                          .add(FetchMovieDetails(widget.movieId));
+                    },
+                    child: Text('Rety'))
+              ],
+            );
           } else {
             return const Center(child: Text("Something went wrong"));
           }
