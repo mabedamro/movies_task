@@ -17,7 +17,7 @@ class DetailsRepo {
       return MovieDetails.fromJson(movie);
     } else {
       // If the API request fails, throw an exception
-      throw Exception('Failed to load movies');
+      throw Exception('Failed to load movie details');
     }
   }
 }

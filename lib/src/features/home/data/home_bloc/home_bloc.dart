@@ -14,7 +14,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   HomeBloc(this.movieRepository) : super(HomeInitial()) {
     // Registering the event handlers
     on<FetchTrendingMovies>(_onFetchTrendingHomes);
-    on<FetchMoreTrendingMovies>(_onFetchTrendingHomes);
+
+    on<FetchMoreTrendingMovies>(_onFetchMoreTrendingHomes);
 
     on<SearchMovies>(
         _onSearchHomes); // Register the handler for the SearchHomes event
@@ -22,22 +23,43 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onFetchTrendingHomes(event, Emitter<HomeState> emit) async {
     if (_isFetching) return; // Prevent simultaneous fetch calls
+    _isFetching = true;
+    try {
+      if (state is! HomeLoaded) {
+        emit(HomeLoading());
+      }
+      _currentPage = 1;
+      final currentMovies =
+          state is HomeLoaded ? (state as HomeLoaded).movies : [];
+      final movies =
+          await movieRepository.fetchTrendingMovies(page: _currentPage);
+      emit(HomeLoaded(movies));
+      _currentPage++;
+    } on SocketException {
+      emit(HomeError(Constants.noInternetMsg));
+    } on FormatException {
+      emit(HomeError(Constants.formatErrorMsg));
+    } catch (error) {
+      emit(HomeError(error.toString()));
+    } finally {
+      _isFetching = false;
+    }
+  }
+
+  Future<void> _onFetchMoreTrendingHomes(event, Emitter<HomeState> emit) async {
+    if (_isFetching) return; // Prevent simultaneous fetch calls
 
     _isFetching = true;
     try {
       if (state is! HomeLoaded) {
         emit(HomeLoading());
       }
-
       print(_currentPage);
       final currentMovies =
           state is HomeLoaded ? (state as HomeLoaded).movies : [];
-
       final newMovies =
           await movieRepository.fetchTrendingMovies(page: _currentPage);
-
       emit(HomeLoaded([...currentMovies, ...newMovies]));
-
       _currentPage++;
     } on SocketException {
       emit(HomeError(Constants.noInternetMsg));

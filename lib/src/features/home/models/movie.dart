@@ -42,7 +42,9 @@ class Movie {
       title: json['title'] ?? '',
       originalTitle: json['original_title'] ?? '',
       overview: json['overview'] ?? '',
-      posterPath: json['poster_path'] ?? '',
+      posterPath: json['poster_path'] == null
+          ? ''
+          : 'https://image.tmdb.org/t/p/w200${json['poster_path']}',
       mediaType: json['media_type'] ?? '',
       adult: json['adult'] ?? false,
       originalLanguage: json['original_language'] ?? '',

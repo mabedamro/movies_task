@@ -11,9 +11,7 @@ class HomeRepository {
 
     if (response.statusCode == 200) {
       final json = jsonDecode(response.body);
-      print(EndPoints.trendingMovies(page));
-      print(page);
-      print(json);
+
       final results = json['results'] as List;
       return results.map((e) => Movie.fromJson(e)).toList();
     } else {
