@@ -58,7 +58,7 @@ class MovieDetails {
   factory MovieDetails.fromJson(Map<String, dynamic> json) {
     return MovieDetails(
       adult: json['adult'] ?? false,
-      backdropPath: json['backdrop_path'],
+      backdropPath: 'https://image.tmdb.org/t/p/w500${json['backdrop_path']}',
       id: json['id'],
       originalTitle: json['original_title'],
       title: json['title'],

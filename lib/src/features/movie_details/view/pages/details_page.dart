@@ -44,7 +44,7 @@ class _MovieDetailsPageState extends State<MovieDetailsPage> {
                   Stack(
                     children: [
                       Image.network(
-                        'https://image.tmdb.org/t/p/w500${movie.backdropPath}',
+                        '${movie.backdropPath}',
                         fit: BoxFit.cover,
                         width: double.infinity,
                         height: 250,

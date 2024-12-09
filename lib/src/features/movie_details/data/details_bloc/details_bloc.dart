@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_event.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_state.dart';
 import 'package:movies_task/src/features/movie_details/data/repo/details_repo.dart';
+import 'package:movies_task/src/utils/constants.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final DetailsRepo movieRepository;
@@ -21,9 +22,9 @@ class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
 
       emit(DetailsLoaded(movie));
     } on SocketException {
-      emit(DetailsError('No Internet Connection. Please try again.'));
+      emit(DetailsError(Constants.noInternetMsg));
     } on FormatException {
-      emit(DetailsError('Bad response format from the server.'));
+      emit(DetailsError(Constants.formatErrorMsg));
     } catch (error) {
       emit(DetailsError(error.toString()));
     }
