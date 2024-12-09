@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_event.dart';
 import 'package:movies_task/src/features/movie_details/data/details_bloc/details_state.dart';
 import 'package:movies_task/src/features/movie_details/data/repo/details_repo.dart';
-import 'package:movies_task/src/utils/constants.dart';
+import 'package:movies_task/src/core/utils/constants.dart';
 
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final DetailsRepo movieRepository;

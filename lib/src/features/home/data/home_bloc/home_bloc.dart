@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_event.dart';
 import 'package:movies_task/src/features/home/data/home_bloc/home_state.dart';
 import 'package:movies_task/src/features/home/data/repo/home_repo.dart';
-import 'package:movies_task/src/utils/constants.dart';
+import 'package:movies_task/src/core/utils/constants.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final HomeRepository movieRepository;

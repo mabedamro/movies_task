@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:movies_task/src/core/api/end_points.dart';
 import 'package:movies_task/src/features/home/models/movie.dart';
-import 'package:movies_task/src/utils/end_points.dart';
 
 class HomeRepository {
   Future<List<Movie>> fetchTrendingMovies({int page = 1}) async {
